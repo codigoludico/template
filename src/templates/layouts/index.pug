@@ -1,24 +1,33 @@
+//- Incluye todos los mixins necesarios para trabajar con redes sociales.
+include ../mixins/facebook.pug
+include ../mixins/og.pug
+include ../mixins/twitter.pug
+//- Layout
 doctype html
 html(lang="es",prefix="og: http://ogp.me/ns#")
   head
     block head
       meta(charset="utf-8")
 
-      title=data.title
+      title=title
 
-      meta(name="description",content=data.description)
-      meta(name="keywords",content=data.keywords)
-      meta(name="author",content=data.author)
+      meta(name="description",content=description)
+      if (keywords)
+        if (typeof keywords === "string")
+          meta(name="keywords",content=keywords)
+        else
+          meta(name="keywords",content=keywords.join(","))
+      meta(name="author",content=author)
       meta(name="viewport",content="width=device-width, initial-scale=1.0")
 
       //- Insertamos los datos de facebook.
-      +facebook(data.facebook)
+      +facebook(facebook)
 
       //- Insertamos la información de open graph.
-      +openGraph(data.openGraph)
+      +openGraph(openGraph)
 
       //- Insertamos la información de la twitter card.
-      +twitter(data.twitter)
+      +twitter(twitter)
 
       link(href="",rel="canonical")
       link(href="",rel="me")

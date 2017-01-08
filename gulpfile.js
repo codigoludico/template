@@ -6,6 +6,8 @@ const exorcist = require("exorcist");
 const source = require("vinyl-source-stream");
 const buffer = require("vinyl-buffer");
 const bs = require("browser-sync");
+const chaf = require("connect-history-api-fallback");
+const path = require("path");
 
 // Esta constante indica si la variable de entorno NODE_ENV es
 // production o no. En caso de que NODE_ENV sea igual a "production",
@@ -63,21 +65,30 @@ gulp.task("scripts", () => bundle());
 
 gulp.task("styles", () => {
   gulp.src("src/styles/index.styl")
+    .pipe(plugins.plumber())
+    .pipe(plugins.sourcemaps.init())
     .pipe(plugins.stylus({
+      import: path.join(__dirname, "node_modules", "normalize-styl", "normalize.styl"),
       compress: isProduction
     }))
-    .pipe(gulp.dest("dist"));
+    .pipe(plugins.sourcemaps.write("."))
+    .pipe(gulp.dest("dist"))
+    .pipe(bs.stream());
 });
 
 gulp.task("templates", () => {
-  gulp.src("src/templates/index.pug")
+  const stream = gulp.src("src/templates/index.pug")
+    .pipe(plugins.plumber())
     .pipe(plugins.pug({
       locals: {
-
+        title: "",
+        description: "",
+        keywords: [""]
       },
       pretty: !isProduction
     }))
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest("dist"))
+    .pipe(bs.stream());
 });
 
 gulp.task("build", ["scripts", "styles", "templates"]);
@@ -87,4 +98,13 @@ gulp.task("watch", ["build"], () => {
   gulp.watch("src/templates/**/*.pug", ["templates"]);
 });
 
-gulp.task("default", ["watch"]);
+gulp.task("bs", ["watch"], () => {
+  bs.init({
+    server: {
+      middleware: [chaf()],
+      baseDir: "dist"
+    }
+  });
+});
+
+gulp.task("default", ["bs"]);

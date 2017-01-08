@@ -1,45 +1,62 @@
-// Karma configuration
-// Generated on Sun Jan 08 2017 21:13:31 GMT+0100 (Romance Standard Time)
+// Configuración de Karma
+// Generado el Domingo 08 de Enero de 2017 21:13:31 GMT+0100
 module.exports = function(config) {
   config.set({
-    // base path that will be used to resolve all patterns (eg. files, exclude)
+    // Ruta base
     basePath: "",
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ["mocha"],
-    // list of files / patterns to load in the browser
+    // Frameworks que vamos a usar.
+    // Frameworks disponibles: https://npmjs.org/browse/keyword/karma-adapter
+    frameworks: ["browserify","mocha"],
+    // Lista de archivos / patrones a cargar en el navegador.
     files: [
       "src/scripts/**/*.js",
       "test/**/*.js"
     ],
-    // list of files to exclude
+    // Lista de archivos a excluir
     exclude: [
+
     ],
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    // Archivos que se deben preprocesar antes de comenzar los tests.
+    // Preprocesadores disponibles: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      "src/scripts/**/*.js": ["browserify"],
+      "test/**/*.js": ["browserify"]
     },
-    // test results reporter to use
-    // possible values: "dots", "progress"
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ["progress"],
-    // web server port
+    // Configuración de browserify.
+    browserify: {
+      debug: true,
+      paths: ["src/scripts"],
+      transform: [
+        ["babelify", { presets: ["latest"], plugins: ["istanbul"] }],
+        "installify"
+      ]
+    },
+    // Configuración de la cobertura de scripts.
+    coverageReporter: {
+      type : "html",
+      dir : "coverage/"
+    },
+    // Reporter que se usará.
+    // Valores posibles: "dots", "progress", "mocha"
+    // Reporters disponibles: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ["mocha"],
+    // Puerto del Web Server
     port: 9876,
-    // enable / disable colors in the output (reporters and logs)
+    // Activa / desactiva colores en el output.
     colors: true,
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // Nivel de logging
+    // Valores: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
-    // enable / disable watching file and executing tests whenever any file changes
+    // Activa / desactiva si se escuchan o no los cambios en los archivos de los tests.
     autoWatch: true,
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    // Comienza los navegadores.
+    // Lanzadores disponibles: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ["Chrome"],
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
+    // Modo de integración continua.
+    // Si es true, sólo se ejecutarán una vez los tests.
     singleRun: false,
-    // Concurrency level
-    // how many browser should be started simultaneous
+    // Nivel de concurrencia.
+    // Cuantos navegadores deben arrancar simultáneamente.
     concurrency: Infinity
-  })
-}
+  });
+};
