@@ -1,0 +1,29 @@
+doctype html
+html(lang="es",prefix="og: http://ogp.me/ns#")
+  head
+    block head
+      meta(charset="utf-8")
+
+      title=data.title
+
+      meta(name="description",content=data.description)
+      meta(name="keywords",content=data.keywords)
+      meta(name="author",content=data.author)
+      meta(name="viewport",content="width=device-width, initial-scale=1.0")
+
+      //- Insertamos los datos de facebook.
+      +facebook(data.facebook)
+
+      //- Insertamos la información de open graph.
+      +openGraph(data.openGraph)
+
+      //- Insertamos la información de la twitter card.
+      +twitter(data.twitter)
+
+      link(href="",rel="canonical")
+      link(href="",rel="me")
+      link(href="/index.css",rel="stylesheet",type="text/css")
+  body
+
+    block body
+      script(src="/index.js")

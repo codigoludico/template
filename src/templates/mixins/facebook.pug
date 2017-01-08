@@ -1,0 +1,8 @@
+//- Este mixin inserta los metadatos de open graph específicos de facebook
+//- en la cabecera del HTML.
+mixin facebook(data)
+  if (data)
+    if (data.appId)
+      meta(property="fb:app_id",content=data.appId)
+    if (data.admins)
+      meta(property="fb:admins",content=data.admins)

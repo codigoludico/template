@@ -1,0 +1,35 @@
+//- Este mixin inserta los metadatos de twitter cards.
+//- Esta tarjeta se puede validar aquí: https://cards-dev.twitter.com/validator
+mixin twitter(data)
+  if (data)
+    meta(name="data:card",content=data.card || (data.image && "summary_large_image") || "summary")
+    if (data.site)
+      meta(name="data:site",content=data.site)
+    if (data.creator)
+      meta(name="data:creator",content=data.creator)
+    if (data.title)
+      meta(name="data:title",content=data.title)
+    if (data.description)
+      meta(name="data:description",content=data.description)
+    if (data.image)
+      meta(name="data:image",content=data.image)
+
+//- Como se indica en: https://dev.twitter.com/web/javascript/loading
+mixin twitterScript
+  script.
+    window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+      return t;
+    }(document, "script", "twitter-wjs"));
+
+mixin twitterTweetButton(text)
+  a(class="twitter-share-button",href="https://twitter.com/intent/tweet?text=#{text}",data-size="large")&attributes(attributes) Tweet
