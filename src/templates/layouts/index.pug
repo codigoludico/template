@@ -1,7 +1,5 @@
-//- Incluye todos los mixins necesarios para trabajar con redes sociales.
-include ../mixins/facebook.pug
-include ../mixins/og.pug
-include ../mixins/twitter.pug
+//- Incluye los mixins
+include ../mixins.pug
 //- Layout
 doctype html
 html(lang="es",prefix="og: http://ogp.me/ns#")
@@ -33,6 +31,6 @@ html(lang="es",prefix="og: http://ogp.me/ns#")
       link(href="",rel="me")
       link(href="/index.css",rel="stylesheet",type="text/css")
   body
-
     block body
-      script(src="/index.js")
+      h1 Hello World
+    script(src="/index.js")

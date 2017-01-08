@@ -71,7 +71,9 @@ gulp.task("styles", () => {
       import: path.join(__dirname, "node_modules", "normalize-styl", "normalize.styl"),
       compress: isProduction
     }))
-    .pipe(plugins.sourcemaps.write("."))
+    .pipe(plugins.sourcemaps.write(".", {
+      sourceRoot: "/src/styles"
+    }))
     .pipe(gulp.dest("dist"))
     .pipe(bs.stream());
 });
