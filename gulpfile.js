@@ -66,13 +66,21 @@ gulp.task("scripts", () => bundle());
 gulp.task("styles", () => {
   gulp.src("src/styles/index.styl")
     .pipe(plugins.plumber())
-    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.sourcemaps.init({
+      largeFile: true
+    }))
     .pipe(plugins.stylus({
       import: path.join(__dirname, "node_modules", "normalize-styl", "normalize.styl"),
       compress: isProduction
     }))
     .pipe(plugins.sourcemaps.write(".", {
-      sourceRoot: "/src/styles"
+      sourceRoot: "/src/styles",
+      mapSources(sourcePath) {
+        if (sourcePath.indexOf("normalize.styl") >= 0) {
+          return "normalize.styl";
+        }
+        return sourcePath;
+      }
     }))
     .pipe(gulp.dest("dist"))
     .pipe(bs.stream());
@@ -83,9 +91,9 @@ gulp.task("templates", () => {
     .pipe(plugins.plumber())
     .pipe(plugins.pug({
       locals: {
-        title: "",
-        description: "",
-        keywords: [""]
+        title: "Template",
+        description: "Template",
+        keywords: ["template"]
       },
       pretty: !isProduction
     }))
