@@ -27,8 +27,7 @@ module.exports = function(config) {
       debug: true,
       paths: ["src/scripts"],
       transform: [
-        ["babelify", { presets: ["latest"], plugins: ["istanbul"] }],
-        "installify"
+        ["babelify", { presets: ["latest"], plugins: ["istanbul"] }]
       ]
     },
     // Configuración de la cobertura de scripts.

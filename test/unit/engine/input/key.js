@@ -1,0 +1,106 @@
+/* global describe, it */
+import Key from "engine/input/key";
+import {expect} from "chai";
+
+describe("Input", function() {
+
+  describe("Key", () => {
+
+    it("should test that keys have their correct values", () => {
+      expect(Key.BACKSPACE).to.be.equal(8);
+      expect(Key.TAB).to.be.equal(9);
+      expect(Key.ENTER).to.be.equal(13);
+      expect(Key.SHIFT).to.be.equal(16);
+      expect(Key.CTRL).to.be.equal(17);
+      expect(Key.ALT).to.be.equal(18);
+      expect(Key.PAUSE).to.be.equal(19);
+      expect(Key.CAPS_LOCK).to.be.equal(20);
+      expect(Key.ESCAPE).to.be.equal(27);
+      expect(Key.SPACE).to.be.equal(32);
+      expect(Key.PAGE_UP).to.be.equal(33);
+      expect(Key.PAGE_DOWN).to.be.equal(34);
+      expect(Key.END).to.be.equal(35);
+      expect(Key.HOME).to.be.equal(36);
+      expect(Key.LEFT).to.be.equal(37);
+      expect(Key.UP).to.be.equal(38);
+      expect(Key.RIGHT).to.be.equal(39);
+      expect(Key.DOWN).to.be.equal(40);
+      expect(Key.INSERT).to.be.equal(45);
+      expect(Key.DELETE).to.be.equal(46);
+      expect(Key.NUM_0).to.be.equal(48);
+      expect(Key.NUM_1).to.be.equal(49);
+      expect(Key.NUM_2).to.be.equal(50);
+      expect(Key.NUM_3).to.be.equal(51);
+      expect(Key.NUM_4).to.be.equal(52);
+      expect(Key.NUM_5).to.be.equal(53);
+      expect(Key.NUM_6).to.be.equal(54);
+      expect(Key.NUM_7).to.be.equal(55);
+      expect(Key.NUM_8).to.be.equal(56);
+      expect(Key.NUM_9).to.be.equal(57);
+      expect(Key.A).to.be.equal(65);
+      expect(Key.B).to.be.equal(66);
+      expect(Key.C).to.be.equal(67);
+      expect(Key.D).to.be.equal(68);
+      expect(Key.E).to.be.equal(69);
+      expect(Key.F).to.be.equal(70);
+      expect(Key.G).to.be.equal(71);
+      expect(Key.H).to.be.equal(72);
+      expect(Key.I).to.be.equal(73);
+      expect(Key.J).to.be.equal(74);
+      expect(Key.K).to.be.equal(75);
+      expect(Key.L).to.be.equal(76);
+      expect(Key.M).to.be.equal(77);
+      expect(Key.N).to.be.equal(78);
+      expect(Key.O).to.be.equal(79);
+      expect(Key.P).to.be.equal(80);
+      expect(Key.Q).to.be.equal(81);
+      expect(Key.R).to.be.equal(82);
+      expect(Key.S).to.be.equal(83);
+      expect(Key.T).to.be.equal(84);
+      expect(Key.U).to.be.equal(85);
+      expect(Key.V).to.be.equal(86);
+      expect(Key.W).to.be.equal(87);
+      expect(Key.X).to.be.equal(88);
+      expect(Key.Y).to.be.equal(89);
+      expect(Key.Z).to.be.equal(90);
+      expect(Key.NUMPAD_0).to.be.equal(96);
+      expect(Key.NUMPAD_1).to.be.equal(97);
+      expect(Key.NUMPAD_2).to.be.equal(98);
+      expect(Key.NUMPAD_3).to.be.equal(99);
+      expect(Key.NUMPAD_4).to.be.equal(100);
+      expect(Key.NUMPAD_5).to.be.equal(101);
+      expect(Key.NUMPAD_6).to.be.equal(102);
+      expect(Key.NUMPAD_7).to.be.equal(103);
+      expect(Key.NUMPAD_8).to.be.equal(104);
+      expect(Key.NUMPAD_9).to.be.equal(105);
+      expect(Key.MULTIPLY).to.be.equal(106);
+      expect(Key.ADD).to.be.equal(107);
+      expect(Key.SUBTRACT).to.be.equal(109);
+      expect(Key.DECIMAL_POINT).to.be.equal(110);
+      expect(Key.DIVIDE).to.be.equal(111);
+      expect(Key.F1).to.be.equal(112);
+      expect(Key.F2).to.be.equal(113);
+      expect(Key.F3).to.be.equal(114);
+      expect(Key.F4).to.be.equal(115);
+      expect(Key.F5).to.be.equal(116);
+      expect(Key.F6).to.be.equal(117);
+      expect(Key.F7).to.be.equal(118);
+      expect(Key.F8).to.be.equal(119);
+      expect(Key.F9).to.be.equal(120);
+      expect(Key.F10).to.be.equal(121);
+      expect(Key.F11).to.be.equal(122);
+      expect(Key.F12).to.be.equal(123);
+      expect(Key.NUM_LOCK).to.be.equal(144);
+      expect(Key.SCROLL_LOCK).to.be.equal(145);
+      expect(Key.SEMICOLON).to.be.equal(186);
+      expect(Key.EQUAL_SIGN).to.be.equal(187);
+      expect(Key.COMMA).to.be.equal(188);
+      expect(Key.DASH).to.be.equal(189);
+      expect(Key.PERIOD).to.be.equal(190);
+      expect(Key.FORWARD_SLASH).to.be.equal(191);
+      expect(Key.GRAVE_ACCENT).to.be.equal(192);
+    });
+
+  });
+
+});

@@ -31,5 +31,8 @@ mixin twitterScript
       return t;
     }(document, "script", "twitter-wjs"));
 
-mixin twitterTweetButton(text)
-  a(class="twitter-share-button",href="https://twitter.com/intent/tweet?text=#{text}",data-size="large")&attributes(attributes) Tweet
+mixin twitterTweetButton(text="Tweet")
+  a(class="twitter-share-button",href="https://twitter.com/intent/tweet?text=#{text}",data-size="large")&attributes(attributes)=text
+
+mixin twitterFollowButton(account,text="Follow")
+  a(class="twitter-follow-button",href="https://twitter.com/#{account}",data-size="large")&attributes(attributes)=text
