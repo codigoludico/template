@@ -1,5 +1,5 @@
 /* global Float32Array */
-const CONTAINER = Float32Array;
+export const CONTAINER = Float32Array;
 
 const X = 0;
 const Y = 1;
@@ -23,6 +23,20 @@ export function isVec2(v) {
  */
 export function create(x = 0.0, y = 0.0) {
   return new CONTAINER([x,y]);
+}
+
+/**
+ * Crea un nuevo Vec2 usando un sistema de coordenadas polares
+ *
+ * @param {number} angle - Ángulo
+ * @param {number} length - longitud
+ * @return {Vec2}
+ */
+export function polar(angle,length = 1) {
+  return create(
+    Math.cos(angle) * length,
+    Math.sin(angle) * length
+  );
 }
 
 /**
@@ -56,7 +70,9 @@ export function directionOf(v) {
 }
 
 export default {
+  CONTAINER,
   create,
+  polar,
   lengthSquaredOf,
   lengthOf,
   directionOf
