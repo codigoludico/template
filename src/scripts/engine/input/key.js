@@ -1,4 +1,12 @@
 /**
+ * Constantes de teclado. Éste módulo contiene una lista de todos los códigos
+ * de tecla que se pueden usar con los métodos `isPressed`, `isReleased`,
+ * `pressed`, `released` y `stateOf` del módulo `keyboard`.
+ *
+ * @module engine/input/key
+ */
+
+/**
  * @const {number} - Retroceso
  * @default
  */
@@ -646,4 +654,4 @@ export default {
   PERIOD,
   FORWARD_SLASH,
   GRAVE_ACCENT
-};
+}

@@ -7,6 +7,7 @@
   "scripts": {
     "start": "gulp",
     "build": "NODE_ENV=production gulp build",
+    "docs": "gulp docs",
     "test": "karma start --single-run",
     "test:watch": "karma start"
   },
@@ -43,5 +44,8 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.8.0"
+  },
+  "dependencies": {
+    "gulp-jsdoc3": "^1.0.1"
   }
 }

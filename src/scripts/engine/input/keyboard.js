@@ -1,3 +1,11 @@
+/**
+ * Este módulo contiene los métodos necesarios para trabajar con el teclado
+ * exponiendo una serie de funciones útiles para comenzar la escucha de eventos,
+ * detenerla y obtener el estado actual de las teclas.
+ *
+ * @module engine/input/keyboard
+ */
+
 /* global Float32Array */
 import {PRESSED,RELEASED} from "./constants";
 
@@ -28,6 +36,21 @@ function throwOnInvalidRange(key) {
  */
 function handler(e) {
   keys[e.keyCode] = (e.type === "keydown" ? PRESSED : RELEASED);
+}
+
+/**
+ * Devuelve si alguna tecla está presionada (cualquiera)
+ *
+ * @return {boolean}
+ */
+export function isAnyPressed() {
+  for (let index = 0; index < keys.length; index++) {
+    const current = keys[index];
+    if (current !== RELEASED) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -119,4 +142,4 @@ export default {
   release,
   isPressed,
   isReleased
-};
+}

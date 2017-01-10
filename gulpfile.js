@@ -115,6 +115,12 @@ function bundle() {
     .pipe(gulp.dest("dist"));
 }
 
+gulp.task("docs", () => {
+  const config = require("./jsdoc.json");
+  gulp.src(["README.md","src/scripts/**/*.js"], { read: false })
+    .pipe(plugins.jsdoc3(config));
+});
+
 // Tarea de creación de los scripts.
 gulp.task("scripts", () => bundle());
 
