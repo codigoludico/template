@@ -20,7 +20,7 @@ export const Y = 1;
 /**
  * Devuelve si el objeto pasado es un Vec2.
  *
- * @param {*} vector
+ * @param {*} value
  * @return {boolean} - Devuelve si el objeto pasado como parámetro es un Vec2.
  */
 export function isVec2(v) {

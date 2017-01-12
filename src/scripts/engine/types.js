@@ -16,6 +16,16 @@ export function isNumber(v) {
 }
 
 /**
+ * Devuelve si una variable es numérica.
+ *
+ * @param {*} value - Variable que se verificará
+ * @return {boolean} - Devolvemos `true` si es de tipo numérico (Infinity es de tipo numérico)
+ */
+export function isNumeric(v) {
+  return !isNaN(v) && (typeof v === "number" || v instanceof Number);
+}
+
+/**
  * Devuelve si una variable es un número y además el número es entero.
  *
  * @param {*} value - Variable que se verificará
@@ -158,40 +168,47 @@ export function isEmpty(v) {
 /**
  * Devuelve si una variable pertenece a un "clase" concreta.
  *
- * @param {*} value - Variable que se verificará
  * @param {*} type - Tipo de la variable
+ * @param {*} value - Variable que se verificará
  * @return {boolean}
  */
-export function isA(a,b) {
-  if (isFunction(b)) {
-    return a instanceof b;
-  } else if (isString(b)) {
-    switch(b) {
+export function isA(type,value) {
+  if (isFunction(type)) {
+    return value instanceof type;
+  } else if (isString(type)) {
+    switch(type) {
       case "num":
-      case "number": return isNumber(a);
+      case "number": return isNumber(value);
+      case "numeric": return isNumeric(value);
       case "int":
-      case "integer": return isInteger(a);
+      case "integer": return isInteger(value);
       case "bool":
-      case "boolean": return isBoolean(a);
-      case "string": return isString(a);
+      case "boolean": return isBoolean(value);
+      case "string": return isString(value);
+      case "scalar": return isScalar(value);
       case "func":
-      case "function": return isFunction(a);
-      case "null": return isNull(a);
+      case "function": return isFunction(value);
+      case "null": return isNull(value);
       case "undef":
-      case "undefined": return isUndefined(a);
-      case "array": return isArray(a);
-      case "object": return isObject(a);
-      case "error": return isError(a);
-      case "regexp": return isRegExp(a);
-      case "date": return isDate(a);
-      case "empty": return isEmpty(a);
+      case "undefined": return isUndefined(value);
+      case "array": return isArray(value);
+      case "object": return isObject(value);
+      case "error": return isError(value);
+      case "regexp": return isRegExp(value);
+      case "date": return isDate(value);
+      case "empty": return isEmpty(value);
+      default:
+        throw new TypeError(`Tipo "${type}" inválido`);
     }
+  } else {
+    throw new TypeError("El tipo debe ser una cadena de texto o una función");
   }
 }
 
 export default {
   isBoolean,
   isNumber,
+  isNumeric,
   isInteger,
   isString,
   isScalar,

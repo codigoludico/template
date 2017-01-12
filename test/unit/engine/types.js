@@ -1,4 +1,4 @@
-/* global describe, it */
+/* global describe, it, Symbol */
 import types from "engine/types";
 import {expect} from "chai";
 
@@ -23,6 +23,13 @@ describe("Engine", function() {
       expect(types.isBoolean("0")).to.be.equal(false);
       expect(types.isBoolean("hola")).to.be.equal(false);
       expect(types.isBoolean(function() { return 1; })).to.be.equal(false);
+      expect(types.isBoolean(new Error())).to.be.equal(false);
+      expect(types.isBoolean(new TypeError())).to.be.equal(false);
+      expect(types.isBoolean(new RangeError())).to.be.equal(false);
+      expect(types.isBoolean(new EvalError())).to.be.equal(false);
+      expect(types.isBoolean(new ReferenceError())).to.be.equal(false);
+      expect(types.isBoolean(new SyntaxError())).to.be.equal(false);
+      expect(types.isBoolean(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isNumber works properly", () => {
@@ -44,6 +51,41 @@ describe("Engine", function() {
       expect(types.isNumber("0")).to.be.equal(false);
       expect(types.isNumber("hola")).to.be.equal(false);
       expect(types.isNumber(function() { return 1; })).to.be.equal(false);
+      expect(types.isNumber(new Error())).to.be.equal(false);
+      expect(types.isNumber(new TypeError())).to.be.equal(false);
+      expect(types.isNumber(new RangeError())).to.be.equal(false);
+      expect(types.isNumber(new EvalError())).to.be.equal(false);
+      expect(types.isNumber(new ReferenceError())).to.be.equal(false);
+      expect(types.isNumber(new SyntaxError())).to.be.equal(false);
+      expect(types.isNumber(new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isNumeric works properly", () => {
+      expect(types.isNumeric(0)).to.be.equal(true);
+      expect(types.isNumeric(1)).to.be.equal(true);
+      expect(types.isNumeric(Math.PI)).to.be.equal(true);
+      expect(types.isNumeric(Infinity)).to.be.equal(true);
+      expect(types.isNumeric(NaN)).to.be.equal(false);
+      expect(types.isNumeric(null)).to.be.equal(false);
+      expect(types.isNumeric(undefined)).to.be.equal(false);
+      expect(types.isNumeric(true)).to.be.equal(false);
+      expect(types.isNumeric(false)).to.be.equal(false);
+      expect(types.isNumeric(/^[0-9]$/)).to.be.equal(false);
+      expect(types.isNumeric(new Date())).to.be.equal(false);
+      expect(types.isNumeric([])).to.be.equal(false);
+      expect(types.isNumeric({})).to.be.equal(false);
+      expect(types.isNumeric([1,2,3])).to.be.equal(false);
+      expect(types.isNumeric({a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isNumeric("0")).to.be.equal(false);
+      expect(types.isNumeric("hola")).to.be.equal(false);
+      expect(types.isNumeric(function() { return 1; })).to.be.equal(false);
+      expect(types.isNumeric(new Error())).to.be.equal(false);
+      expect(types.isNumeric(new TypeError())).to.be.equal(false);
+      expect(types.isNumeric(new RangeError())).to.be.equal(false);
+      expect(types.isNumeric(new EvalError())).to.be.equal(false);
+      expect(types.isNumeric(new ReferenceError())).to.be.equal(false);
+      expect(types.isNumeric(new SyntaxError())).to.be.equal(false);
+      expect(types.isNumeric(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isInteger works properly", () => {
@@ -65,6 +107,13 @@ describe("Engine", function() {
       expect(types.isInteger("0")).to.be.equal(false);
       expect(types.isInteger("hola")).to.be.equal(false);
       expect(types.isInteger(function() { return 1; })).to.be.equal(false);
+      expect(types.isInteger(new Error())).to.be.equal(false);
+      expect(types.isInteger(new TypeError())).to.be.equal(false);
+      expect(types.isInteger(new RangeError())).to.be.equal(false);
+      expect(types.isInteger(new EvalError())).to.be.equal(false);
+      expect(types.isInteger(new ReferenceError())).to.be.equal(false);
+      expect(types.isInteger(new SyntaxError())).to.be.equal(false);
+      expect(types.isInteger(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isString works properly", () => {
@@ -86,6 +135,13 @@ describe("Engine", function() {
       expect(types.isString("0")).to.be.equal(true);
       expect(types.isString("hola")).to.be.equal(true);
       expect(types.isString(function() { return 1; })).to.be.equal(false);
+      expect(types.isString(new Error())).to.be.equal(false);
+      expect(types.isString(new TypeError())).to.be.equal(false);
+      expect(types.isString(new RangeError())).to.be.equal(false);
+      expect(types.isString(new EvalError())).to.be.equal(false);
+      expect(types.isString(new ReferenceError())).to.be.equal(false);
+      expect(types.isString(new SyntaxError())).to.be.equal(false);
+      expect(types.isString(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isScalar works properly", () => {
@@ -107,6 +163,13 @@ describe("Engine", function() {
       expect(types.isScalar("0")).to.be.equal(true);
       expect(types.isScalar("hola")).to.be.equal(true);
       expect(types.isScalar(function() { return 1; })).to.be.equal(false);
+      expect(types.isScalar(new Error())).to.be.equal(false);
+      expect(types.isScalar(new TypeError())).to.be.equal(false);
+      expect(types.isScalar(new RangeError())).to.be.equal(false);
+      expect(types.isScalar(new EvalError())).to.be.equal(false);
+      expect(types.isScalar(new ReferenceError())).to.be.equal(false);
+      expect(types.isScalar(new SyntaxError())).to.be.equal(false);
+      expect(types.isScalar(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isFunction works properly", () => {
@@ -128,6 +191,13 @@ describe("Engine", function() {
       expect(types.isFunction("0")).to.be.equal(false);
       expect(types.isFunction("hola")).to.be.equal(false);
       expect(types.isFunction(function() { return 1; })).to.be.equal(true);
+      expect(types.isFunction(new Error())).to.be.equal(false);
+      expect(types.isFunction(new TypeError())).to.be.equal(false);
+      expect(types.isFunction(new RangeError())).to.be.equal(false);
+      expect(types.isFunction(new EvalError())).to.be.equal(false);
+      expect(types.isFunction(new ReferenceError())).to.be.equal(false);
+      expect(types.isFunction(new SyntaxError())).to.be.equal(false);
+      expect(types.isFunction(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isArray works properly", () => {
@@ -149,6 +219,13 @@ describe("Engine", function() {
       expect(types.isArray("0")).to.be.equal(false);
       expect(types.isArray("hola")).to.be.equal(false);
       expect(types.isArray(function() { return 1; })).to.be.equal(false);
+      expect(types.isArray(new Error())).to.be.equal(false);
+      expect(types.isArray(new TypeError())).to.be.equal(false);
+      expect(types.isArray(new RangeError())).to.be.equal(false);
+      expect(types.isArray(new EvalError())).to.be.equal(false);
+      expect(types.isArray(new ReferenceError())).to.be.equal(false);
+      expect(types.isArray(new SyntaxError())).to.be.equal(false);
+      expect(types.isArray(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isObject works properly", () => {
@@ -170,6 +247,13 @@ describe("Engine", function() {
       expect(types.isObject("0")).to.be.equal(false);
       expect(types.isObject("hola")).to.be.equal(false);
       expect(types.isObject(function() { return 1; })).to.be.equal(false);
+      expect(types.isObject(new Error())).to.be.equal(false);
+      expect(types.isObject(new TypeError())).to.be.equal(false);
+      expect(types.isObject(new RangeError())).to.be.equal(false);
+      expect(types.isObject(new EvalError())).to.be.equal(false);
+      expect(types.isObject(new ReferenceError())).to.be.equal(false);
+      expect(types.isObject(new SyntaxError())).to.be.equal(false);
+      expect(types.isObject(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isRegExp works properly", () => {
@@ -191,6 +275,13 @@ describe("Engine", function() {
       expect(types.isRegExp("0")).to.be.equal(false);
       expect(types.isRegExp("hola")).to.be.equal(false);
       expect(types.isRegExp(function() { return 1; })).to.be.equal(false);
+      expect(types.isRegExp(new Error())).to.be.equal(false);
+      expect(types.isRegExp(new TypeError())).to.be.equal(false);
+      expect(types.isRegExp(new RangeError())).to.be.equal(false);
+      expect(types.isRegExp(new EvalError())).to.be.equal(false);
+      expect(types.isRegExp(new ReferenceError())).to.be.equal(false);
+      expect(types.isRegExp(new SyntaxError())).to.be.equal(false);
+      expect(types.isRegExp(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isDate works properly", () => {
@@ -212,6 +303,13 @@ describe("Engine", function() {
       expect(types.isDate("0")).to.be.equal(false);
       expect(types.isDate("hola")).to.be.equal(false);
       expect(types.isDate(function() { return 1; })).to.be.equal(false);
+      expect(types.isDate(new Error())).to.be.equal(false);
+      expect(types.isDate(new TypeError())).to.be.equal(false);
+      expect(types.isDate(new RangeError())).to.be.equal(false);
+      expect(types.isDate(new EvalError())).to.be.equal(false);
+      expect(types.isDate(new ReferenceError())).to.be.equal(false);
+      expect(types.isDate(new SyntaxError())).to.be.equal(false);
+      expect(types.isDate(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isNull works properly", () => {
@@ -233,6 +331,13 @@ describe("Engine", function() {
       expect(types.isNull("0")).to.be.equal(false);
       expect(types.isNull("hola")).to.be.equal(false);
       expect(types.isNull(function() { return 1; })).to.be.equal(false);
+      expect(types.isNull(new Error())).to.be.equal(false);
+      expect(types.isNull(new TypeError())).to.be.equal(false);
+      expect(types.isNull(new RangeError())).to.be.equal(false);
+      expect(types.isNull(new EvalError())).to.be.equal(false);
+      expect(types.isNull(new ReferenceError())).to.be.equal(false);
+      expect(types.isNull(new SyntaxError())).to.be.equal(false);
+      expect(types.isNull(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isUndefined works properly", () => {
@@ -254,6 +359,13 @@ describe("Engine", function() {
       expect(types.isUndefined("0")).to.be.equal(false);
       expect(types.isUndefined("hola")).to.be.equal(false);
       expect(types.isUndefined(function() { return 1; })).to.be.equal(false);
+      expect(types.isUndefined(new Error())).to.be.equal(false);
+      expect(types.isUndefined(new TypeError())).to.be.equal(false);
+      expect(types.isUndefined(new RangeError())).to.be.equal(false);
+      expect(types.isUndefined(new EvalError())).to.be.equal(false);
+      expect(types.isUndefined(new ReferenceError())).to.be.equal(false);
+      expect(types.isUndefined(new SyntaxError())).to.be.equal(false);
+      expect(types.isUndefined(new URIError())).to.be.equal(false);
     });
 
     it("should verify that isEmpty works properly", () => {
@@ -275,6 +387,584 @@ describe("Engine", function() {
       expect(types.isEmpty("0")).to.be.equal(false);
       expect(types.isEmpty("hola")).to.be.equal(false);
       expect(types.isEmpty(function() { return 1; })).to.be.equal(false);
+      expect(types.isEmpty(new Error())).to.be.equal(false);
+      expect(types.isEmpty(new TypeError())).to.be.equal(false);
+      expect(types.isEmpty(new RangeError())).to.be.equal(false);
+      expect(types.isEmpty(new EvalError())).to.be.equal(false);
+      expect(types.isEmpty(new ReferenceError())).to.be.equal(false);
+      expect(types.isEmpty(new SyntaxError())).to.be.equal(false);
+      expect(types.isEmpty(new URIError())).to.be.equal(false);
     });
+
+    it("should verify that isError works properly", () => {
+      expect(types.isError(0)).to.be.equal(false);
+      expect(types.isError(1)).to.be.equal(false);
+      expect(types.isError(Math.PI)).to.be.equal(false);
+      expect(types.isError(Infinity)).to.be.equal(false);
+      expect(types.isError(NaN)).to.be.equal(false);
+      expect(types.isError(null)).to.be.equal(false);
+      expect(types.isError(undefined)).to.be.equal(false);
+      expect(types.isError(true)).to.be.equal(false);
+      expect(types.isError(false)).to.be.equal(false);
+      expect(types.isError(/^[0-9]$/)).to.be.equal(false);
+      expect(types.isError(new Date())).to.be.equal(false);
+      expect(types.isError([])).to.be.equal(false);
+      expect(types.isError({})).to.be.equal(false);
+      expect(types.isError([1,2,3])).to.be.equal(false);
+      expect(types.isError({a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isError("0")).to.be.equal(false);
+      expect(types.isError("hola")).to.be.equal(false);
+      expect(types.isError(function() { return 1; })).to.be.equal(false);
+      expect(types.isError(new Error())).to.be.equal(true);
+      expect(types.isError(new TypeError())).to.be.equal(true);
+      expect(types.isError(new RangeError())).to.be.equal(true);
+      expect(types.isError(new EvalError())).to.be.equal(true);
+      expect(types.isError(new ReferenceError())).to.be.equal(true);
+      expect(types.isError(new SyntaxError())).to.be.equal(true);
+      expect(types.isError(new URIError())).to.be.equal(true);
+    });
+
+    it("should verify that isA('bool') works properly", () => {
+      expect(types.isA("bool",0)).to.be.equal(false);
+      expect(types.isA("bool",1)).to.be.equal(false);
+      expect(types.isA("bool",Math.PI)).to.be.equal(false);
+      expect(types.isA("bool",Infinity)).to.be.equal(false);
+      expect(types.isA("bool",NaN)).to.be.equal(false);
+      expect(types.isA("bool",null)).to.be.equal(false);
+      expect(types.isA("bool",undefined)).to.be.equal(false);
+      expect(types.isA("bool",true)).to.be.equal(true);
+      expect(types.isA("bool",false)).to.be.equal(true);
+      expect(types.isA("bool",/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA("bool",new Date())).to.be.equal(false);
+      expect(types.isA("bool",[])).to.be.equal(false);
+      expect(types.isA("bool",{})).to.be.equal(false);
+      expect(types.isA("bool",[1,2,3])).to.be.equal(false);
+      expect(types.isA("bool",{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA("bool","0")).to.be.equal(false);
+      expect(types.isA("bool","hola")).to.be.equal(false);
+      expect(types.isA("bool",function() { return 1; })).to.be.equal(false);
+      expect(types.isA("bool",new Error())).to.be.equal(false);
+      expect(types.isA("bool",new TypeError())).to.be.equal(false);
+      expect(types.isA("bool",new RangeError())).to.be.equal(false);
+      expect(types.isA("bool",new EvalError())).to.be.equal(false);
+      expect(types.isA("bool",new ReferenceError())).to.be.equal(false);
+      expect(types.isA("bool",new SyntaxError())).to.be.equal(false);
+      expect(types.isA("bool",new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('number') works properly", () => {
+      expect(types.isA("number",0)).to.be.equal(true);
+      expect(types.isA("number",1)).to.be.equal(true);
+      expect(types.isA("number",Math.PI)).to.be.equal(true);
+      expect(types.isA("number",Infinity)).to.be.equal(false);
+      expect(types.isA("number",NaN)).to.be.equal(false);
+      expect(types.isA("number",null)).to.be.equal(false);
+      expect(types.isA("number",undefined)).to.be.equal(false);
+      expect(types.isA("number",true)).to.be.equal(false);
+      expect(types.isA("number",false)).to.be.equal(false);
+      expect(types.isA("number",/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA("number",new Date())).to.be.equal(false);
+      expect(types.isA("number",[])).to.be.equal(false);
+      expect(types.isA("number",{})).to.be.equal(false);
+      expect(types.isA("number",[1,2,3])).to.be.equal(false);
+      expect(types.isA("number",{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA("number","0")).to.be.equal(false);
+      expect(types.isA("number","hola")).to.be.equal(false);
+      expect(types.isA("number",function() { return 1; })).to.be.equal(false);
+      expect(types.isA("number",new Error())).to.be.equal(false);
+      expect(types.isA("number",new TypeError())).to.be.equal(false);
+      expect(types.isA("number",new RangeError())).to.be.equal(false);
+      expect(types.isA("number",new EvalError())).to.be.equal(false);
+      expect(types.isA("number",new ReferenceError())).to.be.equal(false);
+      expect(types.isA("number",new SyntaxError())).to.be.equal(false);
+      expect(types.isA("number",new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('num') works properly", () => {
+      expect(types.isA("num",0)).to.be.equal(true);
+      expect(types.isA("num",1)).to.be.equal(true);
+      expect(types.isA("num",Math.PI)).to.be.equal(true);
+      expect(types.isA("num",Infinity)).to.be.equal(false);
+      expect(types.isA("num",NaN)).to.be.equal(false);
+      expect(types.isA("num",null)).to.be.equal(false);
+      expect(types.isA("num",undefined)).to.be.equal(false);
+      expect(types.isA("num",true)).to.be.equal(false);
+      expect(types.isA("num",false)).to.be.equal(false);
+      expect(types.isA("num",/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA("num",new Date())).to.be.equal(false);
+      expect(types.isA("num",[])).to.be.equal(false);
+      expect(types.isA("num",{})).to.be.equal(false);
+      expect(types.isA("num",[1,2,3])).to.be.equal(false);
+      expect(types.isA("num",{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA("num","0")).to.be.equal(false);
+      expect(types.isA("num","hola")).to.be.equal(false);
+      expect(types.isA("num",function() { return 1; })).to.be.equal(false);
+      expect(types.isA("num",new Error())).to.be.equal(false);
+      expect(types.isA("num",new TypeError())).to.be.equal(false);
+      expect(types.isA("num",new RangeError())).to.be.equal(false);
+      expect(types.isA("num",new EvalError())).to.be.equal(false);
+      expect(types.isA("num",new ReferenceError())).to.be.equal(false);
+      expect(types.isA("num",new SyntaxError())).to.be.equal(false);
+      expect(types.isA("num",new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('numeric') works properly", () => {
+      expect(types.isA('numeric',0)).to.be.equal(true);
+      expect(types.isA('numeric',1)).to.be.equal(true);
+      expect(types.isA('numeric',Math.PI)).to.be.equal(true);
+      expect(types.isA('numeric',Infinity)).to.be.equal(true);
+      expect(types.isA('numeric',NaN)).to.be.equal(false);
+      expect(types.isA('numeric',null)).to.be.equal(false);
+      expect(types.isA('numeric',undefined)).to.be.equal(false);
+      expect(types.isA('numeric',true)).to.be.equal(false);
+      expect(types.isA('numeric',false)).to.be.equal(false);
+      expect(types.isA('numeric',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('numeric',new Date())).to.be.equal(false);
+      expect(types.isA('numeric',[])).to.be.equal(false);
+      expect(types.isA('numeric',{})).to.be.equal(false);
+      expect(types.isA('numeric',[1,2,3])).to.be.equal(false);
+      expect(types.isA('numeric',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('numeric',"0")).to.be.equal(false);
+      expect(types.isA('numeric',"hola")).to.be.equal(false);
+      expect(types.isA('numeric',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('numeric',new Error())).to.be.equal(false);
+      expect(types.isA('numeric',new TypeError())).to.be.equal(false);
+      expect(types.isA('numeric',new RangeError())).to.be.equal(false);
+      expect(types.isA('numeric',new EvalError())).to.be.equal(false);
+      expect(types.isA('numeric',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('numeric',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('numeric',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('int') works properly", () => {
+      expect(types.isA('int', 0)).to.be.equal(true);
+      expect(types.isA('int', 1)).to.be.equal(true);
+      expect(types.isA('int', Math.PI)).to.be.equal(false);
+      expect(types.isA('int', Infinity)).to.be.equal(false);
+      expect(types.isA('int', NaN)).to.be.equal(false);
+      expect(types.isA('int', null)).to.be.equal(false);
+      expect(types.isA('int', undefined)).to.be.equal(false);
+      expect(types.isA('int', true)).to.be.equal(false);
+      expect(types.isA('int', false)).to.be.equal(false);
+      expect(types.isA('int', /^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('int', new Date())).to.be.equal(false);
+      expect(types.isA('int', [])).to.be.equal(false);
+      expect(types.isA('int', {})).to.be.equal(false);
+      expect(types.isA('int', [1,2,3])).to.be.equal(false);
+      expect(types.isA('int', {a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('int', "0")).to.be.equal(false);
+      expect(types.isA('int', "hola")).to.be.equal(false);
+      expect(types.isA('int', function() { return 1; })).to.be.equal(false);
+      expect(types.isA('int', new Error())).to.be.equal(false);
+      expect(types.isA('int', new TypeError())).to.be.equal(false);
+      expect(types.isA('int', new RangeError())).to.be.equal(false);
+      expect(types.isA('int', new EvalError())).to.be.equal(false);
+      expect(types.isA('int', new ReferenceError())).to.be.equal(false);
+      expect(types.isA('int', new SyntaxError())).to.be.equal(false);
+      expect(types.isA('int', new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('string') works properly", () => {
+      expect(types.isA('string',0)).to.be.equal(false);
+      expect(types.isA('string',1)).to.be.equal(false);
+      expect(types.isA('string',Math.PI)).to.be.equal(false);
+      expect(types.isA('string',Infinity)).to.be.equal(false);
+      expect(types.isA('string',NaN)).to.be.equal(false);
+      expect(types.isA('string',null)).to.be.equal(false);
+      expect(types.isA('string',undefined)).to.be.equal(false);
+      expect(types.isA('string',true)).to.be.equal(false);
+      expect(types.isA('string',false)).to.be.equal(false);
+      expect(types.isA('string',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('string',new Date())).to.be.equal(false);
+      expect(types.isA('string',[])).to.be.equal(false);
+      expect(types.isA('string',{})).to.be.equal(false);
+      expect(types.isA('string',[1,2,3])).to.be.equal(false);
+      expect(types.isA('string',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('string',"0")).to.be.equal(true);
+      expect(types.isA('string',"hola")).to.be.equal(true);
+      expect(types.isA('string',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('string',new Error())).to.be.equal(false);
+      expect(types.isA('string',new TypeError())).to.be.equal(false);
+      expect(types.isA('string',new RangeError())).to.be.equal(false);
+      expect(types.isA('string',new EvalError())).to.be.equal(false);
+      expect(types.isA('string',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('string',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('string',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('scalar') works properly", () => {
+      expect(types.isA('scalar',0)).to.be.equal(true);
+      expect(types.isA('scalar',1)).to.be.equal(true);
+      expect(types.isA('scalar',Math.PI)).to.be.equal(true);
+      expect(types.isA('scalar',Infinity)).to.be.equal(false);
+      expect(types.isA('scalar',NaN)).to.be.equal(false);
+      expect(types.isA('scalar',null)).to.be.equal(false);
+      expect(types.isA('scalar',undefined)).to.be.equal(false);
+      expect(types.isA('scalar',true)).to.be.equal(true);
+      expect(types.isA('scalar',false)).to.be.equal(true);
+      expect(types.isA('scalar',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('scalar',new Date())).to.be.equal(false);
+      expect(types.isA('scalar',[])).to.be.equal(false);
+      expect(types.isA('scalar',{})).to.be.equal(false);
+      expect(types.isA('scalar',[1,2,3])).to.be.equal(false);
+      expect(types.isA('scalar',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('scalar',"0")).to.be.equal(true);
+      expect(types.isA('scalar',"hola")).to.be.equal(true);
+      expect(types.isA('scalar',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('scalar',new Error())).to.be.equal(false);
+      expect(types.isA('scalar',new TypeError())).to.be.equal(false);
+      expect(types.isA('scalar',new RangeError())).to.be.equal(false);
+      expect(types.isA('scalar',new EvalError())).to.be.equal(false);
+      expect(types.isA('scalar',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('scalar',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('scalar',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('func') works properly", () => {
+      expect(types.isA('func',0)).to.be.equal(false);
+      expect(types.isA('func',1)).to.be.equal(false);
+      expect(types.isA('func',Math.PI)).to.be.equal(false);
+      expect(types.isA('func',Infinity)).to.be.equal(false);
+      expect(types.isA('func',NaN)).to.be.equal(false);
+      expect(types.isA('func',null)).to.be.equal(false);
+      expect(types.isA('func',undefined)).to.be.equal(false);
+      expect(types.isA('func',true)).to.be.equal(false);
+      expect(types.isA('func',false)).to.be.equal(false);
+      expect(types.isA('func',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('func',new Date())).to.be.equal(false);
+      expect(types.isA('func',[])).to.be.equal(false);
+      expect(types.isA('func',{})).to.be.equal(false);
+      expect(types.isA('func',[1,2,3])).to.be.equal(false);
+      expect(types.isA('func',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('func',"0")).to.be.equal(false);
+      expect(types.isA('func',"hola")).to.be.equal(false);
+      expect(types.isA('func',function() { return 1; })).to.be.equal(true);
+      expect(types.isA('func',new Error())).to.be.equal(false);
+      expect(types.isA('func',new TypeError())).to.be.equal(false);
+      expect(types.isA('func',new RangeError())).to.be.equal(false);
+      expect(types.isA('func',new EvalError())).to.be.equal(false);
+      expect(types.isA('func',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('func',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('func',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('function') works properly", () => {
+      expect(types.isA('function',0)).to.be.equal(false);
+      expect(types.isA('function',1)).to.be.equal(false);
+      expect(types.isA('function',Math.PI)).to.be.equal(false);
+      expect(types.isA('function',Infinity)).to.be.equal(false);
+      expect(types.isA('function',NaN)).to.be.equal(false);
+      expect(types.isA('function',null)).to.be.equal(false);
+      expect(types.isA('function',undefined)).to.be.equal(false);
+      expect(types.isA('function',true)).to.be.equal(false);
+      expect(types.isA('function',false)).to.be.equal(false);
+      expect(types.isA('function',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('function',new Date())).to.be.equal(false);
+      expect(types.isA('function',[])).to.be.equal(false);
+      expect(types.isA('function',{})).to.be.equal(false);
+      expect(types.isA('function',[1,2,3])).to.be.equal(false);
+      expect(types.isA('function',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('function',"0")).to.be.equal(false);
+      expect(types.isA('function',"hola")).to.be.equal(false);
+      expect(types.isA('function',function() { return 1; })).to.be.equal(true);
+      expect(types.isA('function',new Error())).to.be.equal(false);
+      expect(types.isA('function',new TypeError())).to.be.equal(false);
+      expect(types.isA('function',new RangeError())).to.be.equal(false);
+      expect(types.isA('function',new EvalError())).to.be.equal(false);
+      expect(types.isA('function',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('function',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('function',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('array') works properly", () => {
+      expect(types.isA('array',0)).to.be.equal(false);
+      expect(types.isA('array',1)).to.be.equal(false);
+      expect(types.isA('array',Math.PI)).to.be.equal(false);
+      expect(types.isA('array',Infinity)).to.be.equal(false);
+      expect(types.isA('array',NaN)).to.be.equal(false);
+      expect(types.isA('array',null)).to.be.equal(false);
+      expect(types.isA('array',undefined)).to.be.equal(false);
+      expect(types.isA('array',true)).to.be.equal(false);
+      expect(types.isA('array',false)).to.be.equal(false);
+      expect(types.isA('array',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('array',new Date())).to.be.equal(false);
+      expect(types.isA('array',[])).to.be.equal(true);
+      expect(types.isA('array',{})).to.be.equal(false);
+      expect(types.isA('array',[1,2,3])).to.be.equal(true);
+      expect(types.isA('array',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('array',"0")).to.be.equal(false);
+      expect(types.isA('array',"hola")).to.be.equal(false);
+      expect(types.isA('array',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('array',new Error())).to.be.equal(false);
+      expect(types.isA('array',new TypeError())).to.be.equal(false);
+      expect(types.isA('array',new RangeError())).to.be.equal(false);
+      expect(types.isA('array',new EvalError())).to.be.equal(false);
+      expect(types.isA('array',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('array',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('array',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('object') works properly", () => {
+      expect(types.isA('object',0)).to.be.equal(false);
+      expect(types.isA('object',1)).to.be.equal(false);
+      expect(types.isA('object',Math.PI)).to.be.equal(false);
+      expect(types.isA('object',Infinity)).to.be.equal(false);
+      expect(types.isA('object',NaN)).to.be.equal(false);
+      expect(types.isA('object',null)).to.be.equal(false);
+      expect(types.isA('object',undefined)).to.be.equal(false);
+      expect(types.isA('object',true)).to.be.equal(false);
+      expect(types.isA('object',false)).to.be.equal(false);
+      expect(types.isA('object',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('object',new Date())).to.be.equal(false);
+      expect(types.isA('object',[])).to.be.equal(false);
+      expect(types.isA('object',{})).to.be.equal(true);
+      expect(types.isA('object',[1,2,3])).to.be.equal(false);
+      expect(types.isA('object',{a:1,b:2,c:3})).to.be.equal(true);
+      expect(types.isA('object',"0")).to.be.equal(false);
+      expect(types.isA('object',"hola")).to.be.equal(false);
+      expect(types.isA('object',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('object',new Error())).to.be.equal(false);
+      expect(types.isA('object',new TypeError())).to.be.equal(false);
+      expect(types.isA('object',new RangeError())).to.be.equal(false);
+      expect(types.isA('object',new EvalError())).to.be.equal(false);
+      expect(types.isA('object',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('object',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('object',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('regexp') works properly", () => {
+      expect(types.isA('regexp',0)).to.be.equal(false);
+      expect(types.isA('regexp',1)).to.be.equal(false);
+      expect(types.isA('regexp',Math.PI)).to.be.equal(false);
+      expect(types.isA('regexp',Infinity)).to.be.equal(false);
+      expect(types.isA('regexp',NaN)).to.be.equal(false);
+      expect(types.isA('regexp',null)).to.be.equal(false);
+      expect(types.isA('regexp',undefined)).to.be.equal(false);
+      expect(types.isA('regexp',true)).to.be.equal(false);
+      expect(types.isA('regexp',false)).to.be.equal(false);
+      expect(types.isA('regexp',/^[0-9]$/)).to.be.equal(true);
+      expect(types.isA('regexp',new Date())).to.be.equal(false);
+      expect(types.isA('regexp',[])).to.be.equal(false);
+      expect(types.isA('regexp',{})).to.be.equal(false);
+      expect(types.isA('regexp',[1,2,3])).to.be.equal(false);
+      expect(types.isA('regexp',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('regexp',"0")).to.be.equal(false);
+      expect(types.isA('regexp',"hola")).to.be.equal(false);
+      expect(types.isA('regexp',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('regexp',new Error())).to.be.equal(false);
+      expect(types.isA('regexp',new TypeError())).to.be.equal(false);
+      expect(types.isA('regexp',new RangeError())).to.be.equal(false);
+      expect(types.isA('regexp',new EvalError())).to.be.equal(false);
+      expect(types.isA('regexp',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('regexp',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('regexp',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('date') works properly", () => {
+      expect(types.isA('date',0)).to.be.equal(false);
+      expect(types.isA('date',1)).to.be.equal(false);
+      expect(types.isA('date',Math.PI)).to.be.equal(false);
+      expect(types.isA('date',Infinity)).to.be.equal(false);
+      expect(types.isA('date',NaN)).to.be.equal(false);
+      expect(types.isA('date',null)).to.be.equal(false);
+      expect(types.isA('date',undefined)).to.be.equal(false);
+      expect(types.isA('date',true)).to.be.equal(false);
+      expect(types.isA('date',false)).to.be.equal(false);
+      expect(types.isA('date',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('date',new Date())).to.be.equal(true);
+      expect(types.isA('date',[])).to.be.equal(false);
+      expect(types.isA('date',{})).to.be.equal(false);
+      expect(types.isA('date',[1,2,3])).to.be.equal(false);
+      expect(types.isA('date',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('date',"0")).to.be.equal(false);
+      expect(types.isA('date',"hola")).to.be.equal(false);
+      expect(types.isA('date',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('date',new Error())).to.be.equal(false);
+      expect(types.isA('date',new TypeError())).to.be.equal(false);
+      expect(types.isA('date',new RangeError())).to.be.equal(false);
+      expect(types.isA('date',new EvalError())).to.be.equal(false);
+      expect(types.isA('date',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('date',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('date',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('null') works properly", () => {
+      expect(types.isA('null',0)).to.be.equal(false);
+      expect(types.isA('null',1)).to.be.equal(false);
+      expect(types.isA('null',Math.PI)).to.be.equal(false);
+      expect(types.isA('null',Infinity)).to.be.equal(false);
+      expect(types.isA('null',NaN)).to.be.equal(false);
+      expect(types.isA('null',null)).to.be.equal(true);
+      expect(types.isA('null',undefined)).to.be.equal(false);
+      expect(types.isA('null',true)).to.be.equal(false);
+      expect(types.isA('null',false)).to.be.equal(false);
+      expect(types.isA('null',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('null',new Date())).to.be.equal(false);
+      expect(types.isA('null',[])).to.be.equal(false);
+      expect(types.isA('null',{})).to.be.equal(false);
+      expect(types.isA('null',[1,2,3])).to.be.equal(false);
+      expect(types.isA('null',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('null',"0")).to.be.equal(false);
+      expect(types.isA('null',"hola")).to.be.equal(false);
+      expect(types.isA('null',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('null',new Error())).to.be.equal(false);
+      expect(types.isA('null',new TypeError())).to.be.equal(false);
+      expect(types.isA('null',new RangeError())).to.be.equal(false);
+      expect(types.isA('null',new EvalError())).to.be.equal(false);
+      expect(types.isA('null',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('null',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('null',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('undefined') works properly", () => {
+      expect(types.isA('undefined',0)).to.be.equal(false);
+      expect(types.isA('undefined',1)).to.be.equal(false);
+      expect(types.isA('undefined',Math.PI)).to.be.equal(false);
+      expect(types.isA('undefined',Infinity)).to.be.equal(false);
+      expect(types.isA('undefined',NaN)).to.be.equal(false);
+      expect(types.isA('undefined',null)).to.be.equal(false);
+      expect(types.isA('undefined',undefined)).to.be.equal(true);
+      expect(types.isA('undefined',true)).to.be.equal(false);
+      expect(types.isA('undefined',false)).to.be.equal(false);
+      expect(types.isA('undefined',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('undefined',new Date())).to.be.equal(false);
+      expect(types.isA('undefined',[])).to.be.equal(false);
+      expect(types.isA('undefined',{})).to.be.equal(false);
+      expect(types.isA('undefined',[1,2,3])).to.be.equal(false);
+      expect(types.isA('undefined',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('undefined',"0")).to.be.equal(false);
+      expect(types.isA('undefined',"hola")).to.be.equal(false);
+      expect(types.isA('undefined',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('undefined',new Error())).to.be.equal(false);
+      expect(types.isA('undefined',new TypeError())).to.be.equal(false);
+      expect(types.isA('undefined',new RangeError())).to.be.equal(false);
+      expect(types.isA('undefined',new EvalError())).to.be.equal(false);
+      expect(types.isA('undefined',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('undefined',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('undefined',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('undef') works properly", () => {
+      expect(types.isA('undef',0)).to.be.equal(false);
+      expect(types.isA('undef',1)).to.be.equal(false);
+      expect(types.isA('undef',Math.PI)).to.be.equal(false);
+      expect(types.isA('undef',Infinity)).to.be.equal(false);
+      expect(types.isA('undef',NaN)).to.be.equal(false);
+      expect(types.isA('undef',null)).to.be.equal(false);
+      expect(types.isA('undef',undefined)).to.be.equal(true);
+      expect(types.isA('undef',true)).to.be.equal(false);
+      expect(types.isA('undef',false)).to.be.equal(false);
+      expect(types.isA('undef',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('undef',new Date())).to.be.equal(false);
+      expect(types.isA('undef',[])).to.be.equal(false);
+      expect(types.isA('undef',{})).to.be.equal(false);
+      expect(types.isA('undef',[1,2,3])).to.be.equal(false);
+      expect(types.isA('undef',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('undef',"0")).to.be.equal(false);
+      expect(types.isA('undef',"hola")).to.be.equal(false);
+      expect(types.isA('undef',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('undef',new Error())).to.be.equal(false);
+      expect(types.isA('undef',new TypeError())).to.be.equal(false);
+      expect(types.isA('undef',new RangeError())).to.be.equal(false);
+      expect(types.isA('undef',new EvalError())).to.be.equal(false);
+      expect(types.isA('undef',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('undef',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('undef',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('empty') works properly", () => {
+      expect(types.isA('empty',0)).to.be.equal(true);
+      expect(types.isA('empty',1)).to.be.equal(false);
+      expect(types.isA('empty',Math.PI)).to.be.equal(false);
+      expect(types.isA('empty',Infinity)).to.be.equal(false);
+      expect(types.isA('empty',NaN)).to.be.equal(false);
+      expect(types.isA('empty',null)).to.be.equal(true);
+      expect(types.isA('empty',undefined)).to.be.equal(true);
+      expect(types.isA('empty',true)).to.be.equal(false);
+      expect(types.isA('empty',false)).to.be.equal(true);
+      expect(types.isA('empty',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('empty',new Date())).to.be.equal(false);
+      expect(types.isA('empty',[])).to.be.equal(true);
+      expect(types.isA('empty',{})).to.be.equal(true);
+      expect(types.isA('empty',[1,2,3])).to.be.equal(false);
+      expect(types.isA('empty',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('empty',"0")).to.be.equal(false);
+      expect(types.isA('empty',"hola")).to.be.equal(false);
+      expect(types.isA('empty',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('empty',new Error())).to.be.equal(false);
+      expect(types.isA('empty',new TypeError())).to.be.equal(false);
+      expect(types.isA('empty',new RangeError())).to.be.equal(false);
+      expect(types.isA('empty',new EvalError())).to.be.equal(false);
+      expect(types.isA('empty',new ReferenceError())).to.be.equal(false);
+      expect(types.isA('empty',new SyntaxError())).to.be.equal(false);
+      expect(types.isA('empty',new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that isA('error') works properly", () => {
+      expect(types.isA('error',0)).to.be.equal(false);
+      expect(types.isA('error',1)).to.be.equal(false);
+      expect(types.isA('error',Math.PI)).to.be.equal(false);
+      expect(types.isA('error',Infinity)).to.be.equal(false);
+      expect(types.isA('error',NaN)).to.be.equal(false);
+      expect(types.isA('error',null)).to.be.equal(false);
+      expect(types.isA('error',undefined)).to.be.equal(false);
+      expect(types.isA('error',true)).to.be.equal(false);
+      expect(types.isA('error',false)).to.be.equal(false);
+      expect(types.isA('error',/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA('error',new Date())).to.be.equal(false);
+      expect(types.isA('error',[])).to.be.equal(false);
+      expect(types.isA('error',{})).to.be.equal(false);
+      expect(types.isA('error',[1,2,3])).to.be.equal(false);
+      expect(types.isA('error',{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA('error',"0")).to.be.equal(false);
+      expect(types.isA('error',"hola")).to.be.equal(false);
+      expect(types.isA('error',function() { return 1; })).to.be.equal(false);
+      expect(types.isA('error',new Error())).to.be.equal(true);
+      expect(types.isA('error',new TypeError())).to.be.equal(true);
+      expect(types.isA('error',new RangeError())).to.be.equal(true);
+      expect(types.isA('error',new EvalError())).to.be.equal(true);
+      expect(types.isA('error',new ReferenceError())).to.be.equal(true);
+      expect(types.isA('error',new SyntaxError())).to.be.equal(true);
+      expect(types.isA('error',new URIError())).to.be.equal(true);
+    });
+
+    it("should verify that isA returns if it is an instance of an object", () => {
+      class MyType { }
+      const myVar = new MyType();
+      expect(types.isA(MyType,myVar)).to.be.equal(true);
+      expect(types.isA(MyType,0)).to.be.equal(false);
+      expect(types.isA(MyType,1)).to.be.equal(false);
+      expect(types.isA(MyType,Math.PI)).to.be.equal(false);
+      expect(types.isA(MyType,Infinity)).to.be.equal(false);
+      expect(types.isA(MyType,NaN)).to.be.equal(false);
+      expect(types.isA(MyType,null)).to.be.equal(false);
+      expect(types.isA(MyType,undefined)).to.be.equal(false);
+      expect(types.isA(MyType,true)).to.be.equal(false);
+      expect(types.isA(MyType,false)).to.be.equal(false);
+      expect(types.isA(MyType,/^[0-9]$/)).to.be.equal(false);
+      expect(types.isA(MyType,new Date())).to.be.equal(false);
+      expect(types.isA(MyType,[])).to.be.equal(false);
+      expect(types.isA(MyType,{})).to.be.equal(false);
+      expect(types.isA(MyType,[1,2,3])).to.be.equal(false);
+      expect(types.isA(MyType,{a:1,b:2,c:3})).to.be.equal(false);
+      expect(types.isA(MyType,"0")).to.be.equal(false);
+      expect(types.isA(MyType,"hola")).to.be.equal(false);
+      expect(types.isA(MyType,function() { return 1; })).to.be.equal(false);
+      expect(types.isA(MyType,new Error())).to.be.equal(false);
+      expect(types.isA(MyType,new TypeError())).to.be.equal(false);
+      expect(types.isA(MyType,new RangeError())).to.be.equal(false);
+      expect(types.isA(MyType,new EvalError())).to.be.equal(false);
+      expect(types.isA(MyType,new ReferenceError())).to.be.equal(false);
+      expect(types.isA(MyType,new SyntaxError())).to.be.equal(false);
+      expect(types.isA(MyType,new URIError())).to.be.equal(false);
+    });
+
+    it("should verify that an invalid type passed to isA throws an error", () => {
+      expect(() => types.isA({},0)).to.throw(TypeError);
+      expect(() => types.isA([],0)).to.throw(TypeError);
+      expect(() => types.isA(Symbol.for("hola"),0)).to.throw(TypeError);
+      expect(() => types.isA("blablabla",0)).to.throw(TypeError);
+    });
+
   });
 });

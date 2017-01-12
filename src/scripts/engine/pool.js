@@ -11,18 +11,29 @@
  */
 class PoolObject {
   /**
-   *
+   * @constructor
+   * @param {Object} El objeto que deseamos contener en el Pool
    */
   constructor(object) {
     this.object = object;
     this.isEnabled = false;
   }
 
+  /**
+   * Activa este objeto dentro del Pool
+   *
+   * @return {Object}
+   */
   enable() {
     this.isEnabled = true;
     return this.object;
   }
 
+  /**
+   * Desactiva el objeto dentro del Pool
+   *
+   * @return {Object}
+   */
   disable() {
     this.isEnabled = false;
     return this.object;
@@ -61,6 +72,7 @@ export function create(count, factory, ...args) {
         index = (index + 1) % list.length;
         const poolObject = list[index];
         if (!poolObject.isEnabled) {
+          // Aumentamos la longitud del pool.
           length++;
           return poolObject.enable();
         }
@@ -71,9 +83,15 @@ export function create(count, factory, ...args) {
       const index = indices.get(object);
       if (index !== undefined) {
         const poolObject = list[index];
+        // Reducimos la longitud del pool.
+        length--;
         return poolObject.disable();
       }
       throw new Error("El objeto no existe en el ObjectPool");
     }
   };
+}
+
+export default {
+  create
 }
